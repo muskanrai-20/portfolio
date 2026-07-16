@@ -33,14 +33,13 @@ const Hero = () => {
             {/* Background Video */}
             <video
                 ref={videoRef}
+                src={`${import.meta.env.BASE_URL}videos/vedio.mp4`}
+                autoPlay
                 loop
                 muted={isMuted}
                 playsInline
                 className="absolute top-0 left-0 w-full h-full object-cover z-0"
-            >
-                <source src="/videos/vedio.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
+            />
 
             {/* Content Container */}
             <div className="absolute inset-0 z-20 px-6 pb-20 md:pb-[8%] md:px-12 max-w-7xl mx-auto flex flex-col md:flex-row justify-end md:justify-between items-start md:items-end text-left w-full">
@@ -52,7 +51,7 @@ const Hero = () => {
                         data-aos="fade-up"
                         className="text-white text-3xl md:text-5xl font-bold mb-4 tracking-tight"
                     >
-                        Hi, I’m a <br /> <span className="text-transparent [-webkit-text-stroke:1.5px_black]">Full Stack Developer</span>
+                        Hi, I’m  <br /> <span className="text-transparent [-webkit-text-stroke:1.5px_black]">Full Stack Developer</span>
                     </h1>
 
                     {/* Subheading */}

@@ -13,7 +13,7 @@ const Footer = () => {
                 </div>
 
                 <div className="flex flex-col gap-1 md:items-center">
-                    <p>5+ years of experience</p>
+                    <p>2+ years of experience</p>
                     <a href="#work" className="underline hover:text-white transition-colors mt-1 underline-offset-4 decoration-1">View Work</a>
                 </div>
 
@@ -26,7 +26,7 @@ const Footer = () => {
             {/* Middle Huge Text */}
             <div className="w-full flex justify-center items-center py-20 md:py-24 overflow-hidden">
                 <h2 className="text-[18vw] md:text-[16vw] leading-none font-sans font-bold tracking-tighter lowercase select-none text-[#f4f4f4] w-full text-center">
-                    leeshark
+                    Muskan
                 </h2>
             </div>
 
