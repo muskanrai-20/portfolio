@@ -15,12 +15,15 @@ const Hero = () => {
         });
     }, []);
 
+    // Toggle mute/unmute (video keeps playing either way)
     const toggleMute = (e) => {
         e.stopPropagation();
         if (videoRef.current) {
             const newMutedState = !videoRef.current.muted;
             videoRef.current.muted = newMutedState;
             setIsMuted(newMutedState);
+
+            // If unmuting and video isn't playing, start it
             if (!newMutedState && videoRef.current.paused) {
                 videoRef.current.play();
                 setIsPlaying(true);
@@ -28,57 +31,66 @@ const Hero = () => {
         }
     };
 
+    // Keep isPlaying state in sync with actual video element state
     const handlePlay = () => setIsPlaying(true);
     const handlePause = () => setIsPlaying(false);
 
     return (
         <section id="home" className="relative w-full h-screen overflow-hidden bg-black">
+            {/* Background Video */}
             <video
                 ref={videoRef}
                 src={`${import.meta.env.BASE_URL}videos/vedio.mp4`}
                 autoPlay
-                loop
                 muted={isMuted}
                 playsInline
                 onPlay={handlePlay}
                 onPause={handlePause}
+                onEnded={handlePause}
                 className="absolute top-0 left-0 w-full h-full object-cover z-0"
             />
 
+            {/* Content Container */}
             <div className="absolute inset-0 z-20 px-6 pb-20 md:pb-[8%] md:px-12 max-w-7xl mx-auto flex flex-col md:flex-row justify-end md:justify-between items-start md:items-end text-left w-full">
 
+                {/* Left Side: Text and Buttons */}
                 <div className="flex flex-col items-start text-left max-w-2xl w-full">
+                    {/* Main Heading */}
                     <h1
                         data-aos="fade-up"
                         className="text-white text-3xl md:text-5xl font-bold mb-4 tracking-tight"
                     >
-                        Hi, I’m Muskan Rai <br /> <span className="text-transparent [-webkit-text-stroke:1.5px_black]"> AI & Full Stack Developer</span>
+                        Hi, I’m Muskan Rai <br /> <span className="text-transparent [-webkit-text-stroke:1.5px_black]">Full Stack Developer</span>
                     </h1>
 
+                    {/* Subheading */}
                     <p
                         data-aos="fade-up"
                         data-aos-delay="200"
                         className="text-white text-sm md:text-lg font-semibold mb-8 max-w-md drop-shadow-md"
                     >
-
-                        Building intelligent web applications using AI, Machine Learning, Java, Python, and modern web technologies.
+                        I build fast, scalable and modern web applications using React, Node.js and Tailwind CSS.
                     </p>
 
+                    {/* Buttons */}
                     <div
                         data-aos="fade-up"
                         data-aos-delay="400"
                         className="flex flex-row flex-wrap items-center gap-3 w-full"
                     >
+                        {/* Primary Button */}
                         <a href="#projects" className="px-4 py-2 md:px-6 md:py-2 text-xs md:text-base rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 shadow-md">
                             View My Work
                         </a>
 
+                        {/* Secondary Button - Glassmorphism style */}
                         <a href="#contact" className="px-4 py-2 md:px-6 md:py-2 text-xs md:text-base rounded-full bg-black/40 border border-white text-white font-semibold hover:bg-black/60 transition-all duration-300 backdrop-blur-md">
                             Contact Me
                         </a>
                     </div>
                 </div>
 
+                {/* Right Side: Mute/Unmute Button */}
                 <div
                     data-aos="zoom-in"
                     data-aos-delay="600"
@@ -87,10 +99,12 @@ const Hero = () => {
                 >
                     <div className="w-12 h-12 md:w-20 md:h-20 rounded-full border border-white/30 bg-black/20 backdrop-blur-md flex justify-center items-center group-hover:scale-110 group-hover:bg-[#ff2a2a] transition-all duration-500 shadow-[0_0_30px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_40px_rgba(255,42,42,0.6)]">
                         {isMuted ? (
+                            // Muted Icon (speaker with X)
                             <svg className="w-5 h-5 md:w-8 md:h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.8L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
                             </svg>
                         ) : (
+                            // Unmuted Icon (speaker with sound waves)
                             <svg className="w-5 h-5 md:w-8 md:h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
                             </svg>
@@ -102,6 +116,7 @@ const Hero = () => {
                 </div>
             </div>
 
+            {/* Scroll Indicator */}
             <div
                 data-aos="fade-up"
                 data-aos-delay="800"
