@@ -51,33 +51,33 @@ const ProjectCard = ({ project }) => (
                 ))}
             </div>
             <div className="flex items-center gap-5">
-
-                href={project.link}
-                target={project.link.startsWith('http') ? '_blank' : undefined}
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-bold text-gray-900 hover:text-[#ff2a2a] transition-colors group w-fit"
+                <a
+                    href={project.link}
+                    target={project.link.startsWith('http') ? '_blank' : undefined}
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-bold text-gray-900 hover:text-[#ff2a2a] transition-colors group w-fit"
                 >
-                {project.link.startsWith('http') ? 'View Code' : 'View Project'}
-                <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-            </a>
-            {project.demo && (
-
-                href = { project.demo }
+                    {project.link.startsWith('http') ? 'View Code' : 'View Project'}
+                    <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+                {project.demo && (
+                    <a
+                        href={project.demo}
                         target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-bold text-[#ff2a2a] hover:text-black transition-colors group w-fit"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm font-bold text-[#ff2a2a] hover:text-black transition-colors group w-fit"
                     >
-            Live Demo
-            <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-        </a>
+                        Live Demo
+                        <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
                 )}
+            </div>
+        </div>
     </div>
-        </div >
-    </div >
 );
 
 const Projects = () => {
@@ -87,6 +87,8 @@ const Projects = () => {
             className="bg-white pt-24 pb-32 px-6 md:px-12 w-full relative overflow-hidden font-sans bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:80px_80px]"
         >
             <div className="max-w-6xl mx-auto">
+
+                {/* Header */}
                 <div data-aos="fade-up" className="max-w-2xl mb-16">
                     <div className="inline-block border border-gray-300 rounded-full px-5 py-1.5 text-sm text-gray-600 font-bold mb-8 shadow-sm bg-white">
                         My Work
@@ -99,11 +101,13 @@ const Projects = () => {
                     </p>
                 </div>
 
+                {/* Project Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {projects.map((project) => (
                         <ProjectCard key={project.number} project={project} />
                     ))}
                 </div>
+
             </div>
         </section>
     );
